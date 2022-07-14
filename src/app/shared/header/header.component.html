@@ -1,1 +1,9 @@
-<p>header works!</p>
+<header>
+    <div class="header-con">
+        <h2 class="logo"><a [routerLink]="['/']">RetailCity</a></h2>
+        <div>
+            <img src="assets/svg/shopping-bag-outline.svg" class="cart-icon" (click)="goToCart()">
+            <p class="total-items">{{totalItems}}</p>
+        </div>
+    </div>
+</header>
