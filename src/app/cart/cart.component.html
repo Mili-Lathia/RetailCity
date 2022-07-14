@@ -1,1 +1,28 @@
-<p>cart works!</p>
+<div *ngIf="isitemsLoad">
+    <div class="product-details" *ngFor="let item of cartItems;let i = index">
+        <img class="product-img"  src="{{item.images[0]}}" alt="img">
+        <p class="product-name">{{item.Name}}</p>
+        <p class="product-price">Price : {{item.Price * item.qty}}</p>
+        <div>
+            <!-- increase quantity of product -->
+            <small class="add" (click)="addToCart(item)">+</small>
+            <!-- show quantity of product -->
+            <small class="qty">{{item.qty}}</small>
+            <!-- decrease quantity of product untill 1 -->
+            <small class="remove" (click)="removeQty(item)">-</small>
+        </div>
+        <!-- remove item from list -->
+        <img src="assets/svg/trash-2-outline.svg" class="trash-icon" (click)="removeItem(i)">
+    </div>
+    <div class="total" *ngIf="cartItems[0]">
+        <!-- show total price of product including quantity price -->
+        <h2>SubTotal : {{subTotal}}</h2>
+        <!-- shipping method diaplay -->
+        <label>Choose a Shipping Method:</label>
+        <select  (change)="selectedMethod($event.target.value)">
+          <option value="{{method.Price}}" *ngFor="let method of shippngMethods">{{method.Name}}</option>
+        </select>
+        <!-- show total of all product price + shipping charge -->
+        <h2>Total (shipping charge + SubTotal) : {{total}}</h2>
+    </div>
+</div>
